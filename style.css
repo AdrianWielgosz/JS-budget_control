@@ -44,7 +44,7 @@ body, button, input {
     background-color: rgb(47, 132, 107);
 }
 
-.box h1, .box h2 {
+.box h2, .box h3 {
     padding: 10px 0;
     font-weight: bold;
 }
@@ -54,11 +54,6 @@ body, button, input {
     width: 200px;
     margin-right: 5%;
 }
-
-footer {
-    height: 100px;
-}
-
 
 .income-sum, .expenses-sum {
     text-align: center;

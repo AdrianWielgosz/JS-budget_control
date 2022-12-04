@@ -1,17 +1,17 @@
-const btn1 = document.getElementById("btn1");
+const addIncomeBtn = document.getElementById("addIncomeBtn");
 
 let allIncomeList = [];
 let allIncomeSum = '';
-let lastId = 1;
-incomeIdSplitMain = []
+let incomeLastId = 1;
+var incomeIdSplitMain = []
 
-btn1.addEventListener("click", function () {
+addIncomeBtn.addEventListener("click", function () {
     const newIncomeName = document.getElementById("new-income-name");
     const newIncomePrice = document.getElementById("new-income-price");
     let income = {
         name: newIncomeName.value,
         price: Number(newIncomePrice.value),
-        id: `income-${lastId}`,
+        id: `income-${incomeLastId}`,
     };
 
     if (income.price < 0) {
@@ -19,7 +19,7 @@ btn1.addEventListener("click", function () {
     }
 
     allIncomeList.push(income);
-    lastId++;
+    incomeLastId++;
 
     updateAllIncomeList();
     incomeSum(allIncomeList);
@@ -51,7 +51,7 @@ function updateAllIncomeList() {
             containerIncome.innerHTML = `
             <input id="edited-income-name${incomeIdSplit[1]}" value="${income.name}"></input>
             <input id="edited-income-price${incomeIdSplit[1]}" value="${income.price}" type="number"></input>
-            <button onclick="onSaveIncomeButtonClicked(${incomeIdSplit[1]})">Zapisz</button>
+            <p>*Jeśli nie chcesz nic zmieniać, pozostaw domyślne wartości</p><button onclick="onSaveIncomeButtonClicked(${incomeIdSplit[1]})">Zapisz</button>
             `
         })
 
@@ -74,6 +74,7 @@ function updateAllIncomeList() {
         ulIncomeList.appendChild(incomeLi);
 
     });
+    
 }
 
 function onSaveIncomeButtonClicked(incomeIdSplitMain) {
@@ -100,31 +101,28 @@ function incomeSum(allIncomeList) {
     allIncomeSum = Number(sum1);
 };
 
-const btn2 = document.getElementById("btn2");
+const addExpensesBtn = document.getElementById("addExpensesBtn");
 
 let allExpensesList = [];
-
 let allExpensesSum = '';
+let expensesLastId = 1;
+var expensesIdSplitMain = []
 
-let lastId2 = 1;
-
-expensesIdSplitMain = []
-
-btn2.addEventListener("click", function () {
+addExpensesBtn.addEventListener("click", function () {
 
     const newExpensesName = document.getElementById("new-expenses-name");
     const newExpensesPrice = document.getElementById("new-expenses-price");
     let expenses = {
         name: newExpensesName.value,
         price: Number(newExpensesPrice.value),
-        id: `expenses-${lastId2}`,
+        id: `expenses-${expensesLastId}`,
     };
 
     if (expenses.price < 0) {
         return (alert('musisz podać liczbę większą od zera!'))
     }
     allExpensesList.push(expenses);
-    lastId2++;
+    expensesLastId++;
 
     updateAllExpensesList();
     expensesSum(allExpensesList);
@@ -157,7 +155,7 @@ function updateAllExpensesList() {
             containerExpenses.innerHTML = `
             <input id="edited-expenses-name${expensesIdSplit[1]}" value="${expenses.name}" ></input>
             <input id="edited-expenses-price${expensesIdSplit[1]}" value="${expenses.price}" type="number"></input>
-            <button onclick="onSaveExpensesButtonClicked(${expensesIdSplit[1]})">Zapisz</button>
+            <p>*Jeśli nie chcesz nic zmieniać, pozostaw domyślne wartości</p><button onclick="onSaveExpensesButtonClicked(${expensesIdSplit[1]})">Zapisz</button>
             `
         })
 
