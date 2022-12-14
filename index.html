@@ -26,7 +26,9 @@
                 <div class="income">
                     <h2>PRZYCHODY</h2>
                     <input value="" placeholder="Podaj nazwę dochodu" id="new-income-name"></input>
-                    <input value="" placeholder="Kwota" type="number" id="new-income-price" min="0"></input>
+                    <input value="" placeholder="Kwota" type="number" id="new-income-price" min="0" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                   ></input>
                     <button id="addIncomeBtn">Dodaj</button>
                     <div class="box-income">
                         <ul id="ul-income" class="ul-separator">
@@ -46,7 +48,9 @@
                 <div class="expenses">
                     <h2>WYDATKI</h2>
                     <input value="" placeholder="Podaj nazwę wydatku" id="new-expenses-name"></input>
-                    <input value="" placeholder="Kwota" type="number" id="new-expenses-price" min="0"></input>
+                    <input value="" placeholder="Kwota" type="number" id="new-expenses-price" min="0" oninput="this.value = 
+                    !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                   ></input>
                     <button id="addExpensesBtn">Dodaj</button>
                     <div class="box-expenses">
                         <ul id="ul-expenses" class="ul-separator">

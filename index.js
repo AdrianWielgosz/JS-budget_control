@@ -1,14 +1,14 @@
 const addIncomeBtn = document.getElementById("addIncomeBtn");
 
-let allIncomeList = [];
-let allIncomeSum = '';
-let incomeLastId = 1;
-var incomeIdSplitMain = []
+const allIncomeList = [];
+const allIncomeSum = '';
+const incomeLastId = 1;
+const incomeIdSplitMain = []
 
 addIncomeBtn.addEventListener("click", function () {
     const newIncomeName = document.getElementById("new-income-name");
     const newIncomePrice = document.getElementById("new-income-price");
-    let income = {
+    const income = {
         name: newIncomeName.value,
         price: Number(newIncomePrice.value),
         id: `income-${incomeLastId}`,
@@ -32,10 +32,10 @@ function updateAllIncomeList() {
     
     allIncomeList.forEach(function (income) {
 
-        let incomeIdSplit = income.id.split('-');
+        const incomeIdSplit = income.id.split('-');
         incomeIdSplitMain.push(incomeIdSplit)
 
-        let incomeLi = document.createElement('li');
+        const incomeLi = document.createElement('li');
         incomeLi.innerText = `${income.name} :${income.price} zł`;
         incomeLi.classList.add('li-separator');
         incomeLi.id = `li-income-${incomeIdSplit[1]}`;
@@ -46,11 +46,13 @@ function updateAllIncomeList() {
         editIncomeBtn.innerText = 'Edytuj';
         editIncomeBtn.id = `editIncomeBtn-${incomeIdSplit[1]}`;
         editIncomeBtn.addEventListener('click', function () {
-            let containerIncomeLiId = `li-income-${incomeIdSplit[1]}`
-            let containerIncome = document.getElementById(containerIncomeLiId);
+            const containerIncomeLiId = `li-income-${incomeIdSplit[1]}`
+            const containerIncome = document.getElementById(containerIncomeLiId);
             containerIncome.innerHTML = `
             <input id="edited-income-name${incomeIdSplit[1]}" value="${income.name}"></input>
-            <input id="edited-income-price${incomeIdSplit[1]}" value="${income.price}" type="number"></input>
+            <input id="edited-income-price${incomeIdSplit[1]}" value="${income.price}" type="number" min="0" oninput="this.value = 
+            !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+           ></input>
             <p>*Jeśli nie chcesz nic zmieniać, pozostaw domyślne wartości</p><button onclick="onSaveIncomeButtonClicked(${incomeIdSplit[1]})">Zapisz</button>
             `
         })
@@ -60,8 +62,8 @@ function updateAllIncomeList() {
         deleteIncomeBtn.id = `deleteIncomeBtn-${incomeIdSplit[1]}`;
         deleteIncomeBtn.addEventListener('click', function () {
             allIncomeList = allIncomeList.filter(function (elemIncome) {
-                let deleteIncomeBtnId = deleteIncomeBtn.id.split('-');
-                let incomeSplit = elemIncome.id.split('-');
+                const deleteIncomeBtnId = deleteIncomeBtn.id.split('-');
+                const incomeSplit = elemIncome.id.split('-');
                 return Number(incomeSplit[1]) !== Number(deleteIncomeBtnId[1]);
             });
             updateAllIncomeList();
@@ -78,10 +80,10 @@ function updateAllIncomeList() {
 }
 
 function onSaveIncomeButtonClicked(incomeIdSplitMain) {
-    let income = allIncomeList.find(elem => elem.id === `income-${incomeIdSplitMain}`);
-    let inputIncomeElemValue = document.getElementById(`edited-income-name${incomeIdSplitMain}`);
+    const income = allIncomeList.find(elem => elem.id === `income-${incomeIdSplitMain}`);
+    const inputIncomeElemValue = document.getElementById(`edited-income-name${incomeIdSplitMain}`);
     income.name = inputIncomeElemValue.value;
-    let inputIncomeElemPrice = document.getElementById(`edited-income-price${incomeIdSplitMain}`);
+    const inputIncomeElemPrice = document.getElementById(`edited-income-price${incomeIdSplitMain}`);
     income.price = Number(inputIncomeElemPrice.value)
 
     updateAllIncomeList()
@@ -96,23 +98,23 @@ function incomeSum(allIncomeList) {
         sum1 += allIncomeList[i1].price;
         i1++;
     }
-    let incomeSum = document.getElementById('income-sum-value');
+    const incomeSum = document.getElementById('income-sum-value');
     incomeSum.innerText = `${sum1} zł`;
     allIncomeSum = Number(sum1);
 };
 
 const addExpensesBtn = document.getElementById("addExpensesBtn");
 
-let allExpensesList = [];
-let allExpensesSum = '';
-let expensesLastId = 1;
-var expensesIdSplitMain = []
+const allExpensesList = [];
+const allExpensesSum = '';
+const expensesLastId = 1;
+const expensesIdSplitMain = []
 
 addExpensesBtn.addEventListener("click", function () {
 
     const newExpensesName = document.getElementById("new-expenses-name");
     const newExpensesPrice = document.getElementById("new-expenses-price");
-    let expenses = {
+    const expenses = {
         name: newExpensesName.value,
         price: Number(newExpensesPrice.value),
         id: `expenses-${expensesLastId}`,
@@ -139,7 +141,7 @@ function updateAllExpensesList() {
         let expensesIdSplit = expenses.id.split('-');
         expensesIdSplitMain.push(expensesIdSplit)
 
-        let expensesLi = document.createElement('li');
+        const expensesLi = document.createElement('li');
         expensesLi.innerText = `${expenses.name} :${expenses.price} zł`;
         expensesLi.classList.add('li-separator');
         expensesLi.id = `li-expenses-${expensesIdSplit[1]}`;
@@ -150,11 +152,13 @@ function updateAllExpensesList() {
         editExpensesBtn.innerText = 'Edytuj';
         editExpensesBtn.id = `editIncomeBtn-${expensesIdSplit[1]}`;
         editExpensesBtn.addEventListener('click', function () {
-            let containerExpensesLiId = `li-expenses-${expensesIdSplit[1]}`
-            let containerExpenses = document.getElementById(containerExpensesLiId);
+            const containerExpensesLiId = `li-expenses-${expensesIdSplit[1]}`
+            const containerExpenses = document.getElementById(containerExpensesLiId);
             containerExpenses.innerHTML = `
             <input id="edited-expenses-name${expensesIdSplit[1]}" value="${expenses.name}" ></input>
-            <input id="edited-expenses-price${expensesIdSplit[1]}" value="${expenses.price}" type="number"></input>
+            <input id="edited-expenses-price${expensesIdSplit[1]}" value="${expenses.price}" type="number" min="0" oninput="this.value = 
+            !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+           ></input>
             <p>*Jeśli nie chcesz nic zmieniać, pozostaw domyślne wartości</p><button onclick="onSaveExpensesButtonClicked(${expensesIdSplit[1]})">Zapisz</button>
             `
         })
@@ -181,10 +185,10 @@ function updateAllExpensesList() {
 }
 
 function onSaveExpensesButtonClicked(expensesIdSplitMain) {
-    let expenses = allExpensesList.find(elem => elem.id === `expenses-${expensesIdSplitMain}`);
-    let inputExpensesElemValue = document.getElementById(`edited-expenses-name${expensesIdSplitMain}`);
+    const expenses = allExpensesList.find(elem => elem.id === `expenses-${expensesIdSplitMain}`);
+    const inputExpensesElemValue = document.getElementById(`edited-expenses-name${expensesIdSplitMain}`);
     expenses.name = inputExpensesElemValue.value;
-    let inputExpensesElemPrice = document.getElementById(`edited-expenses-price${expensesIdSplitMain}`);
+    const inputExpensesElemPrice = document.getElementById(`edited-expenses-price${expensesIdSplitMain}`);
     expenses.price = Number(inputExpensesElemPrice.value)
     updateAllExpensesList()
     expensesSum(allExpensesList)
@@ -198,16 +202,15 @@ function expensesSum(allExpensesList) {
         sum2 += allExpensesList[i2].price;
         i2++;
     }
-    let expensesSum = document.getElementById('expenses-sum-value');
+    const expensesSum = document.getElementById('expenses-sum-value');
     expensesSum.innerText = `${sum2} zł`;
     allExpensesSum = Number(sum2);
 };
 
 function budgetSum() {
-    let budget = allIncomeSum - allExpensesSum;
-    let moneyLeftValue = document.getElementById('money-left-value')
-    let moneyLeftStyle = document.querySelector('.money-left')
-    console.group(moneyLeftStyle)
+    const budget = allIncomeSum - allExpensesSum;
+    const moneyLeftValue = document.getElementById('money-left-value')
+    const moneyLeftStyle = document.querySelector('.money-left')
     if (budget > 0) {
         moneyLeftValue.innerText = `Możesz jeszcze wydać ${budget} zł`
         moneyLeftStyle.style.backgroundColor = "green";
