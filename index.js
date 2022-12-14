@@ -1,9 +1,9 @@
 const addIncomeBtn = document.getElementById("addIncomeBtn");
 
-const allIncomeList = [];
-const allIncomeSum = '';
-const incomeLastId = 1;
-const incomeIdSplitMain = []
+let allIncomeList = [];
+let allIncomeSum = '';
+let incomeLastId = 1;
+let incomeIdSplitMain = []
 
 addIncomeBtn.addEventListener("click", function () {
     const newIncomeName = document.getElementById("new-income-name");
@@ -105,10 +105,10 @@ function incomeSum(allIncomeList) {
 
 const addExpensesBtn = document.getElementById("addExpensesBtn");
 
-const allExpensesList = [];
-const allExpensesSum = '';
-const expensesLastId = 1;
-const expensesIdSplitMain = []
+let allExpensesList = [];
+let allExpensesSum = '';
+let expensesLastId = 1;
+let expensesIdSplitMain = []
 
 addExpensesBtn.addEventListener("click", function () {
 
